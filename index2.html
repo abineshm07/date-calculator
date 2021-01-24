@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>Days Calculator</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div class="col-10 mx-auto text-center bg-white rounded shadow-sm py-3">
+      <div class="">
+        <h1 class="text-primary">Finding difference between Two Dates</h1>
+      </div>
+      <div class="col-6 mx-auto my-5 d-flex justify-content-between">
+        <div>
+          <p class="font-weight-bold text-left">From: </p>
+          <input type="date" id="date1" /> 
+        </div>
+        <div>
+          <p class="font-weight-bold text-left">To: </p>
+          <input type="date" id="date2" />
+        </div>
+            
+            
+      </div>
+      
+    <button type="button" class="btn btn-primary" onclick="diff_date()">Find the differnce</button>
+    <div class="my-3">
+      <h3 id="num-days"></h3>
+    </div>
+    </div>
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="bootstrap.bundle.js"></script>
+    <script>
+      function diff_date() {
+        let d1 = document.querySelector("#date1").value;
+        let d2 = document.querySelector("#date2").value;
+        d1 = new Date(d1);
+        d2 = new Date(d2);
+        let Difference_In_Time = d2 - d1;
+        let Difference_In_Days = Math.abs(Difference_In_Time / (1000 * 60 * 60 * 24));
+        let output= '';
+        if (d1 == "Invalid Date" || d2 == "Invalid Date") { 
+          output = "Please enter a valid date";
+          document.querySelector("#num-days").classList.add('text-danger');
+        } else {
+          output = "Total number of days between dates  <br>" + d1.toDateString() + " and "  + d2.toDateString() + " is: " + Difference_In_Days + " days";
+          document.querySelector("#num-days").classList.remove('text-danger');
+        }
+        document.querySelector("#num-days").innerHTML = output;
+      }
+    </script>
+  </body>
+</html>
